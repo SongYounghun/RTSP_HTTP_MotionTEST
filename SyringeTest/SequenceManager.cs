@@ -30,7 +30,7 @@ namespace SyringeTest
         IDIO m_io = null;
 
         HTTP_Vision m_httpVision = null;
-        RTSP_Vision m_rtspVision = null;
+        RTSP_Cam m_rtspCam = null;
 
         public enum SEQUENCE { Delay = 0, Motion, IO, VisionSnap, }
 
@@ -170,9 +170,11 @@ namespace SyringeTest
                             case SEQUENCE.Motion:
                                 SEQ_MOTION dataMot = (SEQ_MOTION)curr.data;
                                 m_mot.AxisMove(dataMot.nAxisNum, dataMot.dPos, false);
+                                while (m_mot.AxisIsBusy(dataMot.nAxisNum)) { Thread.Sleep(1); }
                                 break;
 
                             case SEQUENCE.VisionSnap:
+                                
                                 m_httpVision = HTTP_Vision.GetInstance();
                                 if (!m_httpVision.IsInitialize)
                                     m_httpVision.SetInit();
@@ -181,7 +183,17 @@ namespace SyringeTest
                                     string path = m_httpVision.SavePath + "\\" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + ".bmp";
                                     Bitmap bitmap = m_httpVision.SnapShot();
                                     bitmap.Save(path);
-                                }                                
+                                }
+                                 
+                                /*
+                                m_httpVision = HTTP_Vision.GetInstance();
+                                string path = m_httpVision.SavePath + "\\" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + ".bmp";
+
+                                m_rtspCam = RTSP_Cam.GetInstance();
+                                m_rtspCam.SnapShot();
+                                Bitmap bitmap = m_rtspCam.SnapShot();
+                                bitmap.Save(path);
+                                */
                                 break;
                         }
                     }

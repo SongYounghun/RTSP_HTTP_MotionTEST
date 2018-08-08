@@ -90,7 +90,7 @@
     <Compile Include="Common\IniFile.cs" />
     <Compile Include="Common\LogFile.cs" />
     <Compile Include="Common\ViewportlayoutSetting.cs" />
-    <Compile Include="HTTP_Vision.cs" />
+    <Compile Include="HTTP_Cam.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

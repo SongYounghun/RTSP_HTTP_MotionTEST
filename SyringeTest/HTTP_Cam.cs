@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace SyringeTest
 {
-    public class HTTP_Vision
+    public class HTTP_Cam
     {
-        static private HTTP_Vision m_http_cam = null;
-        static public HTTP_Vision GetInstance()
+        static private HTTP_Cam m_http_cam = null;
+        static public HTTP_Cam GetInstance()
         {
             if (m_http_cam == null)
             {
-                m_http_cam = new HTTP_Vision();
+                m_http_cam = new HTTP_Cam();
             }
 
             return m_http_cam;

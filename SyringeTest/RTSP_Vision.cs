@@ -17,7 +17,7 @@ namespace SyringeTest
     public partial class RTSP_Vision : Form
     {
         RTSP_Cam m_rtspCam = null;
-        HTTP_Vision m_httpCam = null;
+        HTTP_Cam m_httpCam = null;
 
         public RTSP_Vision()
         {
@@ -33,7 +33,7 @@ namespace SyringeTest
         private void RTSP_Vision_Load(object sender, EventArgs e)
         {
             m_rtspCam = RTSP_Cam.GetInstance();
-            m_httpCam = HTTP_Vision.GetInstance();
+            m_httpCam = HTTP_Cam.GetInstance();
 
             try
             {

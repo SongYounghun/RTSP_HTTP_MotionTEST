@@ -29,7 +29,7 @@ namespace SyringeTest
         IMotion m_mot = null;
         IDIO m_io = null;
 
-        HTTP_Vision m_httpVision = null;
+        HTTP_Cam m_httpCam = null;
         RTSP_Cam m_rtspCam = null;
 
         public enum SEQUENCE { Delay = 0, Motion, IO, VisionSnap, }
@@ -48,7 +48,7 @@ namespace SyringeTest
 
         public struct SEQ_VISION_SNAP
         {
-            public HTTP_Vision httpVision;
+            public HTTP_Cam httpVision;
         }
 
         public struct SEQ_LIST
@@ -175,19 +175,19 @@ namespace SyringeTest
 
                             case SEQUENCE.VisionSnap:
                                 
-                                m_httpVision = HTTP_Vision.GetInstance();
-                                if (!m_httpVision.IsInitialize)
-                                    m_httpVision.SetInit();
-                                if (m_httpVision.IsInitialize)
+                                m_httpCam = HTTP_Cam.GetInstance();
+                                if (!m_httpCam.IsInitialize)
+                                    m_httpCam.SetInit();
+                                if (m_httpCam.IsInitialize)
                                 {
-                                    string path = m_httpVision.SavePath + "\\" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + ".bmp";
-                                    Bitmap bitmap = m_httpVision.SnapShot();
+                                    string path = m_httpCam.SavePath + "\\" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + ".bmp";
+                                    Bitmap bitmap = m_httpCam.SnapShot();
                                     bitmap.Save(path);
                                 }
-                                 
+
                                 /*
-                                m_httpVision = HTTP_Vision.GetInstance();
-                                string path = m_httpVision.SavePath + "\\" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + ".bmp";
+                                m_httpCam = HTTP_Cam.GetInstance();
+                                string path = m_httpCam.SavePath + "\\" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + ".bmp";
 
                                 m_rtspCam = RTSP_Cam.GetInstance();
                                 m_rtspCam.SnapShot();
